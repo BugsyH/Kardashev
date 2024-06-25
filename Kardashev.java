@@ -1,12 +1,12 @@
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*;
 
 public class Kardashev {
-    private int minerals = 0; // Initial amount of minerals
+    private float energyProduction = 0; // Initial energy production
+    private float energyConsumption = 0; // Initial energy consumption
+    private float energyStorage = 0; // Initial energy storage
+    private float energyStorageMax = 1000; // Maximum energy storage
+
 
     public static void main(String[] args) {
         // Create an instance of the game
@@ -24,20 +24,18 @@ public class Kardashev {
         JPanel panel = new JPanel();
 
         // Create a label to display the amount of minerals
-        JLabel mineralsLabel = new JLabel("Minerals: " + minerals);
+        JLabel energyProductionLabel = new JLabel("Energy Production: " + energyProduction+ " W");
+        JLabel energyConsumptionLabel = new JLabel("Energy Consumption: " + energyConsumption+ " W");
+        JLabel energyStorageLabel = new JLabel("Energy Storage: " + energyStorage+ "/" + energyStorageMax + " kWh");
 
         // Create a button to deploy the mining robot
-        JButton mineButton = new JButton("Deploy Mining Robot");
-        mineButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                deployMiningRobot(mineralsLabel);
-            }
-        });
+        JButton mineButton = new JButton("Deploy Solar Panel");
 
         // Add components to the panel
+        panel.add(energyProductionLabel);
+        panel.add(energyConsumptionLabel);
+        panel.add(energyStorageLabel);
         panel.add(mineButton);
-        panel.add(mineralsLabel);
         
 
         // Add the panel to the frame
@@ -45,12 +43,5 @@ public class Kardashev {
 
         // Display the frame
         frame.setVisible(true);
-    }
-
-    private void deployMiningRobot(JLabel mineralsLabel) {
-        // Simulate mining operation (e.g., gather 10 minerals)
-        minerals += 10;
-        // Update the label to reflect the new amount of minerals
-        mineralsLabel.setText("Minerals: " + minerals);
     }
 }
